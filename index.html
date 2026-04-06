@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Euleanne Espinal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --midnight: #1a2240; --indigo: #253260; --indigo-mid: #2e3f78;
+    --blue-gray: #5b6f9a; --mist: #a8b8d4; --powder: #d4dff0;
+    --fog: #edf1f8; --off-white: #f7f8fc; --warm-white: #fafbfd;
+    --text-dark: #1a2240; --text-mid: #3d4f72; --text-light: #6b7fa3;
+    --text-faint: #9aabca; --divider: rgba(91,111,154,0.13);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text-dark); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 58px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; background: rgba(250,251,253,0.94);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--divider);
+  }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; letter-spacing: 0.04em; color: var(--midnight); text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-size: 12px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--indigo-mid); }
+
+  .page-header { padding: 120px 48px 64px; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid var(--divider); }
+  .label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-faint); display: block; margin-bottom: 10px; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 300; line-height: 1.1; color: var(--midnight); margin-bottom: 16px; }
+  .page-title em { font-style: italic; font-weight: 400; color: var(--blue-gray); }
+  .page-sub { font-size: 15px; font-weight: 300; color: var(--text-light); max-width: 540px; line-height: 1.85; }
+
+  .projects-section { padding: 72px 48px; max-width: 1000px; margin: 0 auto; }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 48px; }
+
+  .project-card { background: var(--off-white); border: 1px solid var(--divider); padding: 36px 32px; transition: all 0.25s ease; }
+  .project-card:hover { border-color: var(--mist); transform: translateY(-2px); box-shadow: 0 4px 24px rgba(26,34,64,0.08); }
+  .project-type { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); display: block; margin-bottom: 14px; }
+  .project-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--midnight); margin-bottom: 12px; line-height: 1.3; }
+  .project-desc { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.8; margin-bottom: 20px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+  .tag { padding: 4px 10px; background: var(--fog); border: 1px solid var(--powder); font-size: 11px; color: var(--text-mid); }
+  .project-link { font-size: 13px; font-weight: 500; color: var(--indigo-mid); text-decoration: none; letter-spacing: 0.03em; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+  .project-link:hover { gap: 10px; }
+
+  .cta-section { padding: 72px 48px; background: var(--midnight); }
+  .cta-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .cta-text .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 3vw, 34px); font-weight: 400; color: var(--off-white); margin-bottom: 10px; }
+  .cta-text .cta-title em { font-style: italic; color: var(--mist); }
+  .cta-text p { font-size: 14px; font-weight: 300; color: var(--mist); opacity: 0.75; }
+  .cta-btns { display: flex; gap: 12px; flex-shrink: 0; }
+
+  .btn { padding: 12px 26px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; display: inline-block; cursor: pointer; transition: all 0.22s ease; border: 1.5px solid transparent; }
+  .btn-light { background: var(--off-white); color: var(--midnight); border-color: var(--off-white); }
+  .btn-light:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+  .btn-outline-light { background: transparent; color: var(--mist); border-color: rgba(168,184,212,0.3); }
+  .btn-outline-light:hover { border-color: var(--mist); color: var(--off-white); transform: translateY(-1px); }
+
+  footer { padding: 22px 48px; background: var(--warm-white); border-top: 1px solid var(--divider); display: flex; align-items: center; justify-content: space-between; }
+  .foot-name { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 400; color: var(--text-faint); }
+  .foot-right { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: var(--text-faint); }
+
+  .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade.in { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 860px) {
+    nav { padding: 0 24px; }
+    .page-header, .projects-section { padding-left: 24px; padding-right: 24px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 56px 24px; }
+    .cta-inner { flex-direction: column; align-items: flex-start; }
+    .cta-btns { flex-wrap: wrap; }
+    footer { padding: 18px 24px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-name">Euleanne Espinal</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">About</a></li>
+    <li><a href="../index.html#strengths">Strengths</a></li>
+    <li><a href="../index.html#work">Work With Me</a></li>
+    <li><a href="index.html" class="active">Projects</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header fade">
+  <span class="label">Selected Work</span>
+  <h1 class="page-title">Projects &amp;<br><em>Experience</em></h1>
+  <p class="page-sub">A selection of work spanning operations coordination, workflow systems, business support, and data tools.</p>
+</div>
+
+<section class="projects-section">
+  <div class="projects-grid fade">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card">
+      <span class="project-type">Operations · Coordination</span>
+      <div class="project-name">Insurance Claims & Project Coordination</div>
+      <p class="project-desc">Coordinated insurance claims, project documentation, and internal communication across active roofing operations. Maintained tracking systems and served as a central point of contact between field teams, adjusters, and office staff.</p>
+      <div class="project-tags">
+        <span class="tag">Project Tracking</span>
+        <span class="tag">Documentation</span>
+        <span class="tag">Cross-team Communication</span>
+        <span class="tag">CRM</span>
+      </div>
+      <!-- Add a link if you have one, or remove this line -->
+      <!-- <a href="#" class="project-link">View details →</a> -->
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card">
+      <span class="project-type">Consulting · Business Support</span>
+      <div class="project-name">Small Business Operations Support</div>
+      <p class="project-desc">Supported small business owners with workflow organization, operational structure, and internal systems. Designed Excel-based trackers, SOPs, and documentation to improve clarity and day-to-day execution.</p>
+      <div class="project-tags">
+        <span class="tag">Workflow Design</span>
+        <span class="tag">Excel</span>
+        <span class="tag">SOP Creation</span>
+        <span class="tag">Process Documentation</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card">
+      <span class="project-type">Data · Reporting</span>
+      <div class="project-name">Operational Dashboards & Trackers</div>
+      <p class="project-desc">Built custom tracking tools and reporting dashboards in Excel and Power BI to improve operational visibility for small business clients. Tools included KPI dashboards, project trackers, and client management systems.</p>
+      <div class="project-tags">
+        <span class="tag">Excel</span>
+        <span class="tag">Power BI</span>
+        <span class="tag">Dashboard Design</span>
+        <span class="tag">Data Reporting</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 — Hunter Dashboard -->
+    <div class="project-card">
+      <span class="project-type">Web App · Personal Project</span>
+      <div class="project-name">Solo Leveling Fitness Dashboard</div>
+      <p class="project-desc">Designed and built a gamified fitness tracking dashboard inspired by Solo Leveling, hosted on GitHub Pages. Tracks workouts, progress phases, and personal goals with an RPG-style interface.</p>
+      <div class="project-tags">
+        <span class="tag">HTML / CSS / JS</span>
+        <span class="tag">GitHub Pages</span>
+        <span class="tag">UI Design</span>
+        <span class="tag">Personal Project</span>
+      </div>
+      <a href="https://unitee7.github.io/Hunter-Dashboard/" target="_blank" class="project-link">View live →</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <div class="cta-title">Interested in<br><em>working together?</em></div>
+      <p>I am available for operations support, project coordination, and business clarity work.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="YOUR_TALLY_FORM_LINK" class="btn btn-light">Fill Out Intake Form</a>
+      <a href="../index.html#contact" class="btn btn-outline-light">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-name">Euleanne Espinal</span>
+  <span class="foot-right">Tampa, FL · Open to Remote Roles</span>
+</footer>
+
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  fades.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
