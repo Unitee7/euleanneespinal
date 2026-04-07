@@ -24,7 +24,7 @@
     --text-faint: #9aabca;
     --divider: rgba(91,111,154,0.13);
   }
-
+ 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
@@ -34,7 +34,7 @@
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
-
+ 
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -56,11 +56,11 @@
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--indigo-mid); }
-
+ 
   /* LAYOUT */
   .wrap { max-width: 1000px; margin: 0 auto; padding: 0 48px; }
   section { padding: 80px 0; border-bottom: 1px solid var(--divider); }
-
+ 
   .label {
     font-family: 'DM Mono', monospace;
     font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
@@ -72,7 +72,7 @@
     color: var(--midnight); margin-bottom: 32px;
   }
   .section-title em { font-style: italic; color: var(--blue-gray); }
-
+ 
   /* BUTTONS */
   .btn {
     padding: 12px 26px; font-family: 'DM Sans', sans-serif;
@@ -88,7 +88,7 @@
   .btn-ghost:hover { border-color: var(--mist); color: var(--text-mid); transform: translateY(-1px); }
   .btn-light { background: var(--off-white); color: var(--midnight); border-color: var(--off-white); }
   .btn-light:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
-
+ 
   /* HERO */
   #hero {
     min-height: 100vh; display: flex; align-items: center;
@@ -133,26 +133,31 @@
     max-width: 440px; line-height: 1.85; margin-bottom: 36px;
   }
   .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+ 
+  /* PHOTO — fixed: no pseudo-element border, clean circle */
   .hero-photo-wrap {
-    position: relative; animation: fadeUp 0.85s 0.15s ease both;
+    position: relative;
+    animation: fadeUp 0.85s 0.15s ease both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .hero-photo-wrap::before {
-    content: ''; position: absolute; inset: -10px -10px 10px 10px;
-    border: 1px solid var(--powder); z-index: 0;
-  }
-  ..hero-photo {
-  position: relative; z-index: 1; width: 100%;
-  aspect-ratio: 1/1; object-fit: cover; object-position: center top;
-  display: block; filter: grayscale(12%) contrast(1.02);
-  border-radius: 50%;
-}
+  .hero-photo {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-radius: 50%;
+    filter: grayscale(12%) contrast(1.02);
   }
   .hero-photo-caption {
-    position: absolute; bottom: -22px; right: 0;
+    margin-top: 16px;
     font-family: 'DM Mono', monospace; font-size: 10px;
     letter-spacing: 0.12em; color: var(--text-faint);
+    text-align: center;
   }
-
+ 
   /* ABOUT */
   #about { background: var(--warm-white); }
   .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
@@ -178,7 +183,7 @@
   .resume-card p { font-size: 13px; font-weight: 300; color: var(--text-light); line-height: 1.7; margin-bottom: 16px; }
   .tools-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
   .tool { padding: 5px 11px; background: var(--powder); font-size: 11px; color: var(--text-mid); }
-
+ 
   /* STRENGTHS */
   #strengths { background: var(--off-white); }
   .strengths-top {
@@ -196,7 +201,7 @@
   .str-card:hover .str-bar { width: 36px; }
   .str-name { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 5px; }
   .str-desc { font-size: 12px; font-weight: 300; color: var(--text-light); line-height: 1.6; }
-
+ 
   /* WORK WITH ME */
   #work { background: var(--midnight); }
   #work .label { color: rgba(168,184,212,0.45); }
@@ -222,7 +227,7 @@
   .svc-price-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--blue-gray); opacity: 0.5; display: block; margin-top: 3px; }
   .work-cta { display: flex; align-items: center; gap: 18px; }
   .work-note { font-size: 13px; font-weight: 300; color: var(--mist); opacity: 0.4; }
-
+ 
   /* CONTACT */
   #contact { background: var(--off-white); border-bottom: none; }
   .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
@@ -251,7 +256,7 @@
   .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #5a9e6f; animation: pulse 2.5s ease-in-out infinite; }
   .avail-text { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--text-mid); }
   .contact-note { font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.85; margin-bottom: 22px; }
-
+ 
   /* FOOTER */
   footer {
     padding: 22px 48px; background: var(--warm-white); border-top: 1px solid var(--divider);
@@ -259,13 +264,13 @@
   }
   .foot-name { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 400; color: var(--text-faint); }
   .foot-right { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: var(--text-faint); }
-
+ 
   /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(90,158,111,0.4); } 50% { box-shadow: 0 0 0 4px rgba(90,158,111,0); } }
   .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade.in { opacity: 1; transform: translateY(0); }
-
+ 
   /* RESPONSIVE */
   @media (max-width: 860px) {
     nav { padding: 0 24px; }
@@ -273,7 +278,7 @@
     .wrap { padding: 0 24px; }
     section { padding: 60px 0; }
     .hero-inner, .about-layout, .strengths-top, .contact-layout { grid-template-columns: 1fr; gap: 36px; }
-    .hero-photo-wrap { max-width: 240px; order: -1; }
+    .hero-photo-wrap { max-width: 240px; order: -1; margin: 0 auto; }
     #hero { padding-top: 72px; }
     .strengths-grid { grid-template-columns: repeat(2, 1fr); }
     .services-grid { grid-template-columns: 1fr; }
@@ -288,7 +293,7 @@
 </style>
 </head>
 <body>
-
+ 
 <nav>
   <a href="#hero" class="nav-name">Euleanne Espinal</a>
   <ul class="nav-links">
@@ -298,7 +303,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
+ 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
@@ -311,7 +316,7 @@
         <div class="hero-headline">Operations, Coordination, and Business Support</div>
         <p class="hero-sub">Bringing structure to moving parts, improving visibility, and creating clear next steps.</p>
         <div class="hero-ctas">
-          <a href="#" class="btn btn-primary">Download Resume</a>
+          <a href="resume.pdf" target="_blank" class="btn btn-primary">Download Resume</a>
           <a href="https://www.linkedin.com/in/euleanneespinal" target="_blank" class="btn btn-outline">Connect on LinkedIn</a>
           <a href="#work" class="btn btn-ghost">Work With Me</a>
         </div>
@@ -323,7 +328,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
@@ -356,12 +361,12 @@
             <span class="tool">Canva</span>
           </div>
         </div>
-        <a href="resume.pdf" class="btn btn-primary" style="width:100%; text-align:center;">Download Resume →</a>
+        <a href="resume.pdf" target="_blank" class="btn btn-primary" style="width:100%; text-align:center;">Download Resume →</a>
       </div>
     </div>
   </div>
 </section>
-
+ 
 <!-- STRENGTHS -->
 <section id="strengths">
   <div class="wrap">
@@ -384,7 +389,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- WORK WITH ME -->
 <section id="work">
   <div class="wrap">
@@ -433,12 +438,12 @@
       </div>
     </div>
     <div class="work-cta">
-      <a href="https://tally.so/r/GxDG9Z" class="btn btn-light">Fill Out Intake Form →</a>
+      <a href="https://tally.so/r/GxDG9Z" target="_blank" class="btn btn-light">Fill Out Intake Form →</a>
       <span class="work-note">I'll follow up within 2–3 business days.</span>
     </div>
   </div>
 </section>
-
+ 
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
@@ -456,9 +461,9 @@
             <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
             <div class="c-meta"><span class="c-label">LinkedIn</span><span class="c-val">linkedin.com/in/euleanneespinal</span></div>
           </a>
-          <a href="#" class="c-link">
+          <a href="resume.pdf" target="_blank" class="c-link">
             <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg></div>
-            <div class="c-meta"><span class="c-label">Resume</span><span class="c-val">Download PDF · Add link here</span></div>
+            <div class="c-meta"><span class="c-label">Resume</span><span class="c-val">Download PDF</span></div>
           </a>
         </div>
       </div>
@@ -468,17 +473,17 @@
           <span class="avail-text">Available for new opportunities</span>
         </div>
         <p class="contact-note">If you're interested in consulting or support services, please fill out the intake form so I can understand what you're working on and whether I'm a good fit.</p>
-        <a href="https://tally.so/r/GxDG9Z" class="btn btn-primary">Fill Out Intake Form →</a>
+        <a href="https://tally.so/r/GxDG9Z" target="_blank" class="btn btn-primary">Fill Out Intake Form →</a>
       </div>
     </div>
   </div>
 </section>
-
+ 
 <footer>
   <span class="foot-name">Euleanne Espinal</span>
   <span class="foot-right">Tampa, FL · Open to Remote Roles</span>
 </footer>
-
+ 
 <script>
   const fades = document.querySelectorAll('.fade');
   const obs = new IntersectionObserver(entries => {
@@ -494,3 +499,4 @@
 </script>
 </body>
 </html>
+ 
