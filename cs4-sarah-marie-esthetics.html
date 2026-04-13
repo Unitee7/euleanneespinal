@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarah Marie Esthetics — Euleanne Espinal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo: #1a1a2e; --indigo-mid: #16213e; --indigo-soft: #1f2b4a;
+    --mist: #a8b8cc; --gold: #c9a96e; --gold-light: #e2c99a;
+    --cream: #f4f0e8; --white: #fafaf8; --dim: rgba(168,184,204,0.1);
+    --bluegray: #718096;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--indigo); color: var(--cream); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+
+  nav { padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--dim); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: .12em; color: var(--mist); text-decoration: none; }
+  .nav-back { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: opacity .2s; }
+  .nav-back:hover { opacity: .6; }
+
+  /* HERO */
+  .hero { max-width: 1100px; margin: 0 auto; padding: 5rem 4rem 2rem; }
+  .real-badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(201,169,110,.1); border: 1px solid rgba(201,169,110,.3); padding: .35rem .9rem; margin-bottom: 1.5rem; font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+  .real-badge::before { content: '●'; font-size: .45rem; }
+  .project-meta { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--mist); margin-bottom: 1rem; display: flex; align-items: center; gap: .8rem; }
+  .project-meta::before { content: ''; width: 28px; height: 1px; background: var(--mist); display: block; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,4.5vw,3.8rem); font-weight: 300; line-height: 1.12; color: var(--white); margin-bottom: .5rem; max-width: 700px; }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .client-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--mist); margin-bottom: 2rem; }
+  .hero-desc { font-size: .96rem; color: var(--mist); line-height: 1.85; max-width: 640px; margin-bottom: 2.5rem; }
+
+  /* OVERVIEW STRIP */
+  .overview { background: var(--indigo-soft); border-top: 1px solid var(--dim); border-bottom: 1px solid var(--dim); }
+  .overview-inner { max-width: 1100px; margin: 0 auto; padding: 2rem 4rem; display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+  .ov-item .ov-label { font-size: .63rem; letter-spacing: .18em; text-transform: uppercase; color: var(--bluegray); margin-bottom: .4rem; }
+  .ov-item .ov-val { font-family: 'Cormorant Garamond', serif; font-size: 1.02rem; color: var(--white); line-height: 1.4; }
+
+  .tags { max-width: 1100px; margin: 0 auto; padding: 2rem 4rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+  .tag { padding: .3rem .85rem; border: 1px solid rgba(168,184,204,.2); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); }
+
+  .gold-div { max-width: 1100px; margin: 0 auto; padding: 0 4rem; height: 1px; background: linear-gradient(90deg,transparent,rgba(201,169,110,.35),transparent); }
+
+  /* BODY */
+  .case-body { max-width: 1100px; margin: 0 auto; padding: 4rem; display: grid; grid-template-columns: 1fr 300px; gap: 5rem; align-items: start; }
+  .main h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 400; color: var(--white); margin-bottom: 1rem; margin-top: 3rem; }
+  .main h2:first-child { margin-top: 0; }
+  .main p { font-size: .95rem; color: var(--mist); line-height: 1.9; margin-bottom: 1rem; }
+
+  .pull-quote { border-left: 2px solid var(--gold); padding: 1.6rem 2rem; margin: 2.5rem 0; background: linear-gradient(135deg,rgba(201,169,110,.07),transparent); }
+  .pull-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-style: italic; color: var(--gold-light); line-height: 1.65; margin: 0; }
+
+  /* DELIVERABLES GRID */
+  .del-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 2rem 0; background: var(--dim); }
+  .del-card { background: var(--indigo-soft); padding: 1.6rem; }
+  .del-card h4 { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: .7rem; }
+  .del-card p { font-size: .84rem; color: var(--mist); line-height: 1.7; }
+
+  /* PHASE TIMELINE */
+  .timeline { display: flex; flex-direction: column; margin: 2rem 0; }
+  .phase { display: grid; grid-template-columns: 110px 1fr; gap: 1.4rem; padding: 1.4rem 0; border-bottom: 1px solid var(--dim); }
+  .phase:last-child { border-bottom: none; }
+  .phase-tag { font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); padding-top: 3px; line-height: 1.4; }
+  .phase h4 { font-size: .88rem; font-weight: 500; color: var(--white); margin-bottom: .35rem; }
+  .phase p { font-size: .83rem; color: var(--bluegray); line-height: 1.65; margin: 0; }
+
+  .del-list { display: flex; flex-direction: column; gap: .7rem; margin: 1.5rem 0; }
+  .del-item { display: flex; gap: .8rem; font-size: .9rem; color: var(--mist); line-height: 1.65; }
+  .del-item::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+  .results { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin: 2rem 0; background: var(--dim); }
+  .result { background: var(--indigo-soft); padding: 1.6rem; text-align: center; }
+  .result-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); line-height: 1; margin-bottom: .4rem; }
+  .result-label { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); line-height: 1.4; }
+
+  /* CLIENT JOURNEY visual */
+  .journey { display: flex; align-items: center; margin: 1.5rem 0; flex-wrap: wrap; gap: .5rem; }
+  .j-step { background: var(--indigo-soft); border: 1px solid var(--dim); padding: .6rem 1rem; font-size: .74rem; color: var(--mist); white-space: nowrap; }
+  .j-step.active { border-color: rgba(201,169,110,.4); color: var(--gold-light); }
+  .j-arrow { color: var(--gold); font-size: .9rem; opacity: .5; }
+
+  .sidebar { position: sticky; top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .sidebar-card { background: var(--indigo-soft); border: 1px solid var(--dim); padding: 1.6rem; }
+  .sidebar-card h5 { font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+  .sc-row { padding: .7rem 0; border-bottom: 1px solid var(--dim); }
+  .sc-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .sc-label { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bluegray); margin-bottom: .25rem; }
+  .sc-val { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--white); line-height: 1.4; }
+  .sidebar-card p { font-size: .84rem; color: var(--mist); line-height: 1.7; }
+
+  .cta { background: var(--indigo-mid); border-top: 1px solid var(--dim); padding: 4rem; text-align: center; }
+  .cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: var(--white); margin-bottom: .7rem; }
+  .cta p { color: var(--mist); font-size: .9rem; margin-bottom: 2rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-p { padding: .8rem 2rem; background: var(--gold); color: var(--indigo); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: opacity .2s; }
+  .btn-p:hover { opacity: .82; }
+  .btn-s { padding: .8rem 2rem; border: 1px solid rgba(201,169,110,.4); color: var(--gold); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: all .2s; }
+  .btn-s:hover { border-color: var(--gold); background: rgba(201,169,110,.06); }
+
+  @media(max-width:900px) {
+    nav, .hero, .overview-inner, .tags, .gold-div, .case-body, .cta { padding-left: 2rem; padding-right: 2rem; }
+    .overview-inner { grid-template-columns: 1fr 1fr; }
+    .del-grid { grid-template-columns: 1fr; }
+    .case-body { grid-template-columns: 1fr; gap: 3rem; }
+    .sidebar { position: static; }
+    .results { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Euleanne Espinal</a>
+  <a href="index.html#work" class="nav-back">← Back to Work</a>
+</nav>
+
+<section class="hero">
+  <div class="real-badge">Real Client Project</div>
+  <div class="project-meta">Case Study 04 &nbsp;·&nbsp; Business Foundation Build</div>
+  <h1>Building the Foundation a<br>Growing Practice <em>Actually Needed</em></h1>
+  <div class="client-name">Sarah Marie Esthetics</div>
+  <p class="hero-desc">A licensed esthetician with real clients, a clear aesthetic, and a growing Instagram presence — but no formal business structure, no documented service model, and no system for tracking performance. This engagement built the operational and strategic foundation the practice needed to grow with intention: business strategy, brand identity, a 90-day launch plan, a full content system, and a custom KPI dashboard.</p>
+</section>
+
+<div class="overview">
+  <div class="overview-inner">
+    <div class="ov-item"><div class="ov-label">Client</div><div class="ov-val">Sarah Marie Esthetics</div></div>
+    <div class="ov-item"><div class="ov-label">Business Type</div><div class="ov-val">Independent Esthetician & Skincare Education</div></div>
+    <div class="ov-item"><div class="ov-label">Scope</div><div class="ov-val">Strategy · Brand · Content · Operations · Data</div></div>
+    <div class="ov-item"><div class="ov-label">Deliverables</div><div class="ov-val">5 documents + 1 Excel KPI dashboard</div></div>
+  </div>
+</div>
+
+<div class="tags">
+  <span class="tag">Business Strategy</span><span class="tag">Brand Foundation</span><span class="tag">90-Day Planning</span>
+  <span class="tag">Content System</span><span class="tag">KPI Dashboard</span><span class="tag">Operations</span><span class="tag">Solo Business</span>
+</div>
+
+<div class="gold-div"></div>
+
+<div class="case-body">
+  <div class="main">
+
+    <h2>The Starting Point</h2>
+    <p>Sarah Marie came to this engagement with something many early-stage business owners don't have: a real skill, a defined point of view, and clients who already trusted her. She was a licensed esthetician with an active Instagram following, a reputation for genuine skincare education, and a growing demand for her consultations and services.</p>
+    <p>What she didn't have was structure. No written document explained what the business was, what it offered, or how it was supposed to grow. Services weren't formally defined. Content happened when it happened. There was no way to track whether the business was actually moving in the right direction — no 90-day plan, no brand guide, no performance dashboard, no client acquisition system.</p>
+    <p>The gap between where the practice was and where she wanted it to go wasn't about skill or work ethic. It was the absence of a foundation. This engagement was about building one — across every area of the business at once, in a way that all fit together.</p>
+
+    <div class="pull-quote">
+      <p>"I knew what I wanted to build. I just needed someone to help me put it together in a way that made sense — and that I could actually follow."</p>
+    </div>
+
+    <h2>The Client Journey We Designed Around</h2>
+    <p>Every piece of the engagement was built around a clear, documented client acquisition flow — from first discovery on Instagram to long-term client relationship. The strategy, content plan, and tech stack were all designed to move people through this journey consistently.</p>
+
+    <div class="journey">
+      <div class="j-step active">Educational Content</div>
+      <div class="j-arrow">→</div>
+      <div class="j-step active">Free Skincare Guide</div>
+      <div class="j-arrow">→</div>
+      <div class="j-step active">Consultation Booking</div>
+      <div class="j-arrow">→</div>
+      <div class="j-step active">Personalized Routine</div>
+      <div class="j-arrow">→</div>
+      <div class="j-step active">Long-Term Client</div>
+    </div>
+
+    <h2>Scope of the Engagement</h2>
+    <p>Five interconnected deliverables — each designed to work with the others. The brand guide informed the content plan. The business strategy shaped the 90-day plan. The KPI dashboard tracked the metrics defined in the strategy. Nothing was built in isolation.</p>
+
+    <div class="timeline">
+      <div class="phase">
+        <div class="phase-tag">Business Strategy</div>
+        <div>
+          <h4>Business Strategy Overview — 11 pages</h4>
+          <p>Business overview, positioning, core service definition, revenue model (consultations, esthetician services, affiliate product recommendations), client journey, marketing strategy, business system, technology stack, key metrics, financial projections by month, and long-term vision. This became the master reference document for every other piece of the engagement.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-tag">Brand Foundation</div>
+        <div>
+          <h4>Branding Guide</h4>
+          <p>Complete visual and tonal identity: color palette (Blush Pink, Sand, Warm Taupe, Amethyst Smoke, Sage), typography system (Fraunes / Kulachat Serif / Allura), visual direction principles, mood board, and Instagram profile sample board. Designed to be the reference point for all future content creation — by Sarah Marie or anyone supporting her.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-tag">Execution Planning</div>
+        <div>
+          <h4>90-Day Focused Launch Plan</h4>
+          <p>A fully phased plan across three stages: Foundation & Setup (Days 1–30), Growth & Consistency (Days 31–60), and Conversion & Optimization (Days 61–90). Each phase included specific launch priorities, a week-by-week rollout with named action items, measurable success indicators, and a complete setup checklist covering both what to create and what to configure technically.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-tag">Content System</div>
+        <div>
+          <h4>Content Launch Plan</h4>
+          <p>A 30-day Instagram content roadmap built around four defined content pillars: Day in the Life, Routine & Products, Client Interaction, and Skincare Education. Included post format, theme, and sequence for each day — plus a full story highlight structure, repeatable story formats, and a complete outline for the free skincare guide that anchors the entire client acquisition funnel.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-tag">KPI Dashboard</div>
+        <div>
+          <h4>Custom Excel Dashboard</h4>
+          <p>Tracking five metrics from the business strategy: guide downloads, consultation bookings, service appointments, return client rate, and monthly revenue. Built to be updated weekly with data already available to the client, with a summary view for quick review and trend tracking over time. No new software required.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>All Five Deliverables</h2>
+    <div class="del-grid">
+      <div class="del-card">
+        <h4>Business Strategy Overview</h4>
+        <p>11-page master reference document covering every dimension of the business — from revenue model and client journey to financial projections and long-term vision.</p>
+      </div>
+      <div class="del-card">
+        <h4>Branding Guide</h4>
+        <p>Complete visual identity system: color palette, typography, visual direction, mood board, and Instagram sample board — usable as a reference for all future creative work.</p>
+      </div>
+      <div class="del-card">
+        <h4>90-Day Launch Plan</h4>
+        <p>Phased week-by-week rollout across three stages, with launch priorities, success indicators, and a setup checklist covering what to create and what to configure.</p>
+      </div>
+      <div class="del-card">
+        <h4>Content Launch Plan</h4>
+        <p>30-day Instagram roadmap, four content pillars, story highlight structure, repeatable story formats, and full lead magnet outline for the free skincare guide.</p>
+      </div>
+      <div class="del-card">
+        <h4>KPI Excel Dashboard</h4>
+        <p>Five metrics tracked with a weekly update protocol designed for a solo operator. Summary view built for quick review, with trend tracking over time.</p>
+      </div>
+      <div class="del-card">
+        <h4>Technology Stack Map</h4>
+        <p>Documented tool architecture: Instagram, Linktree, GlossGenius, MailChimp, Amazon Storefront, Canva, and Google Drive — all mapped to their function in the client journey.</p>
+      </div>
+    </div>
+
+    <h2>What This Engagement Required</h2>
+    <p>This project required holding creative and operational complexity at the same time. Brand identity, visual direction, content strategy, and voice on one side — business documentation, phased planning, metric selection, and dashboard design on the other. Both had to be done well for the whole to function.</p>
+    <p>The client was a solo practitioner with no administrative support and limited bandwidth for complexity. Every deliverable was built with that reality in mind — clear enough to be used without guidance, structured enough to be built on over time, and specific enough to actually drive decisions. The 90-day plan in particular required translating a broad vision into concrete weekly actions that a one-person operation could realistically sustain alongside existing client work.</p>
+
+    <div class="results">
+      <div class="result"><div class="result-val">5</div><div class="result-label">Documents<br>produced</div></div>
+      <div class="result"><div class="result-val">4</div><div class="result-label">Business areas<br>structured</div></div>
+      <div class="result"><div class="result-val">90</div><div class="result-label">Days of execution<br>planned in detail</div></div>
+    </div>
+
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h5>Engagement Details</h5>
+      <div class="sc-row"><div class="sc-label">Client</div><div class="sc-val">Sarah Marie Esthetics</div></div>
+      <div class="sc-row"><div class="sc-label">Industry</div><div class="sc-val">Beauty & Wellness / Skincare Education</div></div>
+      <div class="sc-row"><div class="sc-label">Business Model</div><div class="sc-val">Consultations · Services · Affiliate · Digital products</div></div>
+      <div class="sc-row"><div class="sc-label">Deliverable Formats</div><div class="sc-val">PDF documents + Excel dashboard</div></div>
+    </div>
+    <div class="sidebar-card">
+      <h5>Skills Applied</h5>
+      <div class="sc-row"><div class="sc-label">Operational</div><div class="sc-val">Business documentation, execution planning, system design</div></div>
+      <div class="sc-row"><div class="sc-label">Strategic</div><div class="sc-val">Brand positioning, revenue modeling, client journey design</div></div>
+      <div class="sc-row"><div class="sc-label">Data</div><div class="sc-val">KPI selection, Excel dashboard build, reporting design</div></div>
+      <div class="sc-row"><div class="sc-label">Content</div><div class="sc-val">Content architecture, platform strategy, lead magnet design</div></div>
+    </div>
+    <div class="sidebar-card">
+      <h5>Note on Privacy</h5>
+      <p>Shared with Sarah Marie's permission. Specific financial figures and client data are not included in this public-facing version.</p>
+    </div>
+  </aside>
+</div>
+
+<section class="cta">
+  <h3>Building something but missing the foundation?</h3>
+  <p>Strategy, structure, systems — built to work together from the start.</p>
+  <div class="cta-btns">
+    <a href="contact.html" class="btn-p">Start a Conversation</a>
+    <a href="cs4-sarah-marie-esthetics.pdf" class="btn-s">Download Case Study PDF</a>
+  </div>
+</section>
+
+</body>
+</html>

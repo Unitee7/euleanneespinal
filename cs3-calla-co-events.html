@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calla & Co. Events — Euleanne Espinal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo: #1a1a2e; --indigo-mid: #16213e; --indigo-soft: #1f2b4a;
+    --mist: #a8b8cc; --gold: #c9a96e; --gold-light: #e2c99a;
+    --cream: #f4f0e8; --white: #fafaf8; --dim: rgba(168,184,204,0.1);
+    --bluegray: #718096;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--indigo); color: var(--cream); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+
+  nav { padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--dim); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: .12em; color: var(--mist); text-decoration: none; }
+  .nav-back { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: opacity .2s; }
+  .nav-back:hover { opacity: .6; }
+
+  /* HERO + BEFORE/AFTER */
+  .hero { max-width: 1100px; margin: 0 auto; padding: 5rem 4rem 3rem; }
+  .project-meta { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: .8rem; }
+  .project-meta::before { content: ''; width: 28px; height: 1px; background: var(--gold); display: block; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,4.5vw,3.8rem); font-weight: 300; line-height: 1.12; color: var(--white); margin-bottom: .5rem; max-width: 680px; }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .client-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--mist); margin-bottom: 2rem; }
+  .hero-desc { font-size: .96rem; color: var(--mist); line-height: 1.85; max-width: 620px; margin-bottom: 3rem; }
+
+  /* TRANSFORMATION STRIP */
+  .transform { max-width: 1100px; margin: 0 auto; padding: 0 4rem 3rem; display: grid; grid-template-columns: 1fr 80px 1fr; gap: 0; align-items: stretch; }
+  .t-panel { background: var(--indigo-soft); border: 1px solid var(--dim); padding: 2rem; }
+  .t-panel.before { border-right: none; }
+  .t-panel.after { border-left: none; }
+  .t-label { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 1.2rem; }
+  .t-panel.before .t-label { color: var(--bluegray); }
+  .t-panel.after .t-label { color: var(--gold); }
+  .t-item { font-size: .84rem; line-height: 1.5; padding: .5rem 0; border-bottom: 1px solid var(--dim); display: flex; gap: .6rem; align-items: flex-start; }
+  .t-item:last-child { border-bottom: none; }
+  .t-panel.before .t-item { color: var(--bluegray); font-style: italic; }
+  .t-panel.before .t-item::before { content: '?'; color: rgba(168,184,204,.25); flex-shrink: 0; }
+  .t-panel.after .t-item { color: var(--mist); }
+  .t-panel.after .t-item::before { content: '✓'; color: var(--gold); font-size: .7rem; flex-shrink: 0; margin-top: 2px; }
+  .t-arrow { display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); background: var(--indigo-mid); border-top: 1px solid var(--dim); border-bottom: 1px solid var(--dim); }
+
+  .tags { max-width: 1100px; margin: 0 auto; padding: 0 4rem 2rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+  .tag { padding: .3rem .85rem; border: 1px solid rgba(168,184,204,.2); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); }
+
+  .gold-div { max-width: 1100px; margin: 0 auto; padding: 0 4rem; height: 1px; background: linear-gradient(90deg,transparent,rgba(201,169,110,.35),transparent); }
+
+  .case-body { max-width: 1100px; margin: 0 auto; padding: 4rem; display: grid; grid-template-columns: 1fr 300px; gap: 5rem; align-items: start; }
+  .main h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 400; color: var(--white); margin-bottom: 1rem; margin-top: 3rem; }
+  .main h2:first-child { margin-top: 0; }
+  .main p { font-size: .95rem; color: var(--mist); line-height: 1.9; margin-bottom: 1rem; }
+
+  .pull-quote { border-left: 2px solid var(--gold); padding: 1.6rem 2rem; margin: 2.5rem 0; background: linear-gradient(135deg,rgba(201,169,110,.07),transparent); }
+  .pull-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-style: italic; color: var(--gold-light); line-height: 1.65; margin: 0; }
+
+  /* PILLARS */
+  .pillars { display: flex; flex-direction: column; gap: 1px; margin: 1.5rem 0; background: var(--dim); }
+  .pillar { background: var(--indigo-soft); padding: 1.4rem 1.6rem; display: grid; grid-template-columns: 32px 1fr; gap: 1rem; align-items: start; }
+  .pillar-num { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); }
+  .pillar h4 { font-size: .84rem; font-weight: 500; color: var(--white); margin-bottom: .3rem; }
+  .pillar p { font-size: .82rem; color: var(--bluegray); line-height: 1.65; margin: 0; }
+
+  /* SERVICE TIERS */
+  .tiers { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin: 1.5rem 0; background: var(--dim); }
+  .tier { background: var(--indigo-soft); padding: 1.6rem; }
+  .tier-name { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .6rem; }
+  .tier-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); margin-bottom: .6rem; }
+  .tier p { font-size: .8rem; color: var(--bluegray); line-height: 1.6; }
+
+  .del-list { display: flex; flex-direction: column; gap: .7rem; margin: 1.5rem 0; }
+  .del-item { display: flex; gap: .8rem; font-size: .9rem; color: var(--mist); line-height: 1.65; }
+  .del-item::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+  .results { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin: 2rem 0; background: var(--dim); }
+  .result { background: var(--indigo-soft); padding: 1.6rem; text-align: center; }
+  .result-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); line-height: 1; margin-bottom: .4rem; }
+  .result-label { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); line-height: 1.4; }
+
+  .sidebar { position: sticky; top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .sidebar-card { background: var(--indigo-soft); border: 1px solid var(--dim); padding: 1.6rem; }
+  .sidebar-card h5 { font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+  .sc-row { padding: .7rem 0; border-bottom: 1px solid var(--dim); }
+  .sc-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .sc-label { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bluegray); margin-bottom: .25rem; }
+  .sc-val { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--white); }
+  .sidebar-card p { font-size: .84rem; color: var(--mist); line-height: 1.7; }
+
+  .cta { background: var(--indigo-mid); border-top: 1px solid var(--dim); padding: 4rem; text-align: center; }
+  .cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: var(--white); margin-bottom: .7rem; }
+  .cta p { color: var(--mist); font-size: .9rem; margin-bottom: 2rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-p { padding: .8rem 2rem; background: var(--gold); color: var(--indigo); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: opacity .2s; }
+  .btn-p:hover { opacity: .82; }
+  .btn-s { padding: .8rem 2rem; border: 1px solid rgba(201,169,110,.4); color: var(--gold); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: all .2s; }
+  .btn-s:hover { border-color: var(--gold); background: rgba(201,169,110,.06); }
+
+  @media(max-width:900px) {
+    nav, .hero, .transform, .tags, .gold-div, .case-body, .cta { padding-left: 2rem; padding-right: 2rem; }
+    .transform { grid-template-columns: 1fr; }
+    .t-arrow { display: none; }
+    .t-panel.before, .t-panel.after { border: 1px solid var(--dim); }
+    .tiers { grid-template-columns: 1fr; }
+    .case-body { grid-template-columns: 1fr; gap: 3rem; }
+    .sidebar { position: static; }
+    .results { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Euleanne Espinal</a>
+  <a href="index.html#work" class="nav-back">← Back to Work</a>
+</nav>
+
+<section class="hero">
+  <div class="project-meta">Case Study 03 &nbsp;·&nbsp; Idea-to-Execution Planning</div>
+  <h1>Turning a Backlog of Ideas<br>Into <em>a Business With a Plan</em></h1>
+  <div class="client-name">Calla & Co. Events — Tampa Bay Area</div>
+  <p class="hero-desc">Two talented event coordinators with strong creative instincts, a growing reputation, and a list of ideas that had been stalling for months. I helped them sort the pile, clarify what they were actually selling, and build the 90-day plan that finally got things moving.</p>
+</section>
+
+<div class="transform">
+  <div class="t-panel before">
+    <div class="t-label">Before the Engagement</div>
+    <div class="t-item">8+ ideas with no way to prioritize them</div>
+    <div class="t-item">Services priced differently every time</div>
+    <div class="t-item">No formal offer structure or scope</div>
+    <div class="t-item">Planning happened reactively, per project</div>
+    <div class="t-item">Both founders losing energy to friction</div>
+  </div>
+  <div class="t-arrow">→</div>
+  <div class="t-panel after">
+    <div class="t-label">After the Engagement</div>
+    <div class="t-item">One clear 90-day priority in motion</div>
+    <div class="t-item">3 defined service tiers with pricing logic</div>
+    <div class="t-item">Formalized inquiry and onboarding flow</div>
+    <div class="t-item">Shared business documentation both could use</div>
+    <div class="t-item">2 clients booked immediately post-clarity</div>
+  </div>
+</div>
+
+<div class="tags">
+  <span class="tag">Strategic Planning</span><span class="tag">Offer Clarity</span><span class="tag">Execution Design</span>
+  <span class="tag">Documentation</span><span class="tag">Priority Setting</span><span class="tag">Small Business</span>
+</div>
+
+<div class="gold-div"></div>
+
+<div class="case-body">
+  <div class="main">
+
+    <h2>The Situation</h2>
+    <p>Calla & Co. had been operating for about 18 months when the founders reached out. They had real momentum — several events executed well, strong word-of-mouth referrals, and an aesthetic point of view that clients responded to immediately. By most measures, the business was working.</p>
+    <p>But they had been operating entirely reactively. They said yes to whatever came in, priced each engagement based on a rough feeling, and treated every event as a one-off rather than an instance of a defined service model. Meanwhile, a growing list of things they wanted to build — a corporate events tier, portfolio shoots, a vendor partnership program, a proper inquiry process — kept getting talked about and kept staying undone.</p>
+    <p>The problem wasn't motivation or skill. It was the absence of a structure for deciding which idea to move on, in what order, and with what they actually had available. Every week felt like starting over.</p>
+
+    <div class="pull-quote">
+      <p>"We had the drive and we had the clients. What we didn't have was a plan. Every week we'd talk about what we wanted to build and every week nothing moved."</p>
+    </div>
+
+    <h2>The Work</h2>
+    <p>The engagement started with a structured brain dump — getting every idea, concern, goal, and distraction out of both founders' heads and into a shared document where it could actually be looked at. From there, we worked through a prioritization process that separated what needed to happen now from what could wait, and what depended on something else being built first.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">I</div>
+        <div>
+          <h4>Idea Inventory & Prioritization</h4>
+          <p>Every active idea was captured, then sorted by revenue impact, time required, and sequencing dependencies. Several ideas that felt urgent turned out to require foundational work that hadn't happened yet — which is exactly why they kept stalling.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">II</div>
+        <div>
+          <h4>Offer Clarity + Service Tier Design</h4>
+          <p>The service model was undefined enough that they were pricing differently for similar events and struggling to explain what they offered to prospective clients. We defined three tiers with distinct scope, deliverables, and pricing logic — so the answer to "what do you offer?" was no longer improvised.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">III</div>
+        <div>
+          <h4>90-Day Execution Plan</h4>
+          <p>A phased plan covering the first 90 days: formalizing the inquiry and onboarding process, and building a portfolio through two planned styled shoots. Sequenced weekly, with defined milestones and success indicators so the founders could tell whether things were moving.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">IV</div>
+        <div>
+          <h4>Core Business Documentation</h4>
+          <p>A business overview, service description document, and client inquiry workflow — foundational documents the business had never had in written form. Built to be usable by both founders and shareable with prospective clients.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">V</div>
+        <div>
+          <h4>Follow-Through System</h4>
+          <p>A biweekly check-in rhythm and simple progress tracker so the founders could see what was moving between sessions — and so new ideas had a place to go without derailing what was already in progress.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>The Service Tiers We Defined</h2>
+    <p>One of the most immediate impacts of the engagement was giving the founders language for what they already offered. These three tiers were built from how they already worked — not invented from scratch.</p>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Tier 01</div>
+        <div class="tier-title">Day-of Coordination</div>
+        <p>For clients who have planned their own event and need a professional to execute it. Defined scope, timeline management, and vendor coordination on the day itself.</p>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Tier 02</div>
+        <div class="tier-title">Partial Planning</div>
+        <p>For clients who want guidance on key decisions — venue, vendors, budget — without full-service engagement. A defined set of touchpoints and deliverables across the planning period.</p>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Tier 03</div>
+        <div class="tier-title">Full-Service Coordination</div>
+        <p>End-to-end event management from concept through execution. Full vendor management, design direction support, budget tracking, and day-of presence.</p>
+      </div>
+    </div>
+
+    <h2>Outcome</h2>
+    <p>At the 30-day check-in, both founders described the primary change as knowing where to put their energy on any given day. The inquiry workflow had been implemented and was already creating a more consistent client experience. The first styled shoot had been planned and was on the calendar. Two prospective clients who had been in conversation for weeks both booked — the founders credited being able to clearly explain what they were getting.</p>
+    <p>More than any specific document, what the engagement produced was a shared direction. A plan both founders had helped build and both understood — which meant it was actually being followed.</p>
+
+    <div class="results">
+      <div class="result"><div class="result-val">3</div><div class="result-label">Service tiers<br>clarified & priced</div></div>
+      <div class="result"><div class="result-val">90 days</div><div class="result-label">Phased execution<br>plan delivered</div></div>
+      <div class="result"><div class="result-val">2</div><div class="result-label">Clients booked<br>post-clarity</div></div>
+    </div>
+
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h5>Project Scope</h5>
+      <div class="sc-row"><div class="sc-label">Client</div><div class="sc-val">Calla & Co. Events</div></div>
+      <div class="sc-row"><div class="sc-label">Team</div><div class="sc-val">2 founding partners</div></div>
+      <div class="sc-row"><div class="sc-label">Duration</div><div class="sc-val">~2.5 weeks + 30-day check-in</div></div>
+      <div class="sc-row"><div class="sc-label">Type</div><div class="sc-val">Strategy · Planning · Documentation</div></div>
+    </div>
+    <div class="sidebar-card">
+      <h5>Deliverables</h5>
+      <div class="sc-row"><div class="sc-label">Planning</div><div class="sc-val">Idea inventory, prioritization framework, 90-day execution plan</div></div>
+      <div class="sc-row"><div class="sc-label">Offer</div><div class="sc-val">3 service tiers with scope, pricing, and deliverables</div></div>
+      <div class="sc-row"><div class="sc-label">Documentation</div><div class="sc-val">Business overview, service doc, inquiry workflow</div></div>
+    </div>
+    <div class="sidebar-card">
+      <h5>Skills Applied</h5>
+      <p>Strategic prioritization · offer design · execution planning · business documentation · follow-through system design</p>
+    </div>
+  </aside>
+</div>
+
+<section class="cta">
+  <h3>Too many ideas, not enough movement?</h3>
+  <p>Let's sort the pile, clarify the offer, and build a plan you can actually follow.</p>
+  <div class="cta-btns">
+    <a href="contact.html" class="btn-p">Start a Conversation</a>
+    <a href="cs3-calla-co-events.pdf" class="btn-s">Download Case Study PDF</a>
+  </div>
+</section>
+
+</body>
+</html>

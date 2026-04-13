@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Euleanne Espinal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo: #1a1a2e; --indigo-mid: #16213e; --indigo-soft: #1f2b4a;
+    --mist: #a8b8cc; --gold: #c9a96e; --gold-light: #e2c99a;
+    --cream: #f4f0e8; --white: #fafaf8; --dim: rgba(168,184,204,0.1);
+    --bluegray: #718096;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--indigo); color: var(--cream); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; min-height: 100vh; }
+
+  /* NAV */
+  nav { padding: 1.8rem 4rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--dim); position: sticky; top: 0; background: var(--indigo); z-index: 100; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; letter-spacing: .12em; color: var(--mist); text-decoration: none; transition: color .2s; }
+  .nav-logo:hover { color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-link { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); text-decoration: none; transition: color .2s; }
+  .nav-link:hover { color: var(--gold); }
+  .nav-cta { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 1px solid rgba(201,169,110,.35); padding: .4rem 1rem; transition: all .2s; }
+  .nav-cta:hover { background: rgba(201,169,110,.08); border-color: var(--gold); }
+
+  /* HERO */
+  .hero { max-width: 1100px; margin: 0 auto; padding: 5rem 4rem 3.5rem; }
+  .page-label { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.4rem; display: flex; align-items: center; gap: .8rem; }
+  .page-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); display: block; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,4.5vw,3.6rem); font-weight: 300; line-height: 1.12; color: var(--white); margin-bottom: 1.2rem; }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-desc { font-size: 1rem; color: var(--mist); max-width: 580px; line-height: 1.85; }
+
+  /* GOLD LINE */
+  .gold-div { max-width: 1100px; margin: 0 auto; padding: 0 4rem; height: 1px; background: linear-gradient(90deg,transparent,rgba(201,169,110,.35),transparent); }
+
+  /* FILTER LABELS */
+  .filter-row { max-width: 1100px; margin: 0 auto; padding: 2.5rem 4rem 1rem; display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+  .filter-label { font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bluegray); margin-right: .4rem; }
+  .filter-tag { padding: .3rem .85rem; border: 1px solid rgba(168,184,204,.18); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--mist); cursor: default; }
+
+  /* PROJECT GRID */
+  .projects { max-width: 1100px; margin: 0 auto; padding: 1rem 4rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  .project-card { background: var(--indigo-soft); border: 1px solid var(--dim); display: flex; flex-direction: column; transition: border-color .25s, transform .2s; text-decoration: none; }
+  .project-card:hover { border-color: rgba(201,169,110,.35); transform: translateY(-2px); }
+
+  .card-top { padding: 2rem 2rem 1.5rem; flex: 1; }
+  .card-number { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: .7rem; }
+  .card-number::before { content: ''; width: 20px; height: 1px; background: var(--gold); display: block; }
+  .card-type { font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bluegray); margin-bottom: .8rem; }
+  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; line-height: 1.2; color: var(--white); margin-bottom: .4rem; }
+  .card-client { font-family: 'Cormorant Garamond', serif; font-size: .95rem; font-style: italic; color: var(--mist); margin-bottom: 1.2rem; }
+  .card-desc { font-size: .86rem; color: var(--mist); line-height: 1.75; margin-bottom: 1.2rem; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .card-tag { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .65rem; border: 1px solid rgba(168,184,204,.15); color: var(--bluegray); }
+
+  .card-bottom { border-top: 1px solid var(--dim); padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .card-artifacts { font-size: .72rem; color: var(--bluegray); }
+  .card-link { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: .4rem; }
+  .card-link::after { content: '→'; }
+
+  /* REAL badge */
+  .real-badge { display: inline-flex; align-items: center; gap: .4rem; background: rgba(201,169,110,.1); border: 1px solid rgba(201,169,110,.25); padding: .2rem .7rem; font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: .9rem; }
+  .real-badge::before { content: '●'; font-size: .4rem; }
+
+  /* ARTIFACT STRIP */
+  .artifacts-section { max-width: 1100px; margin: 0 auto; padding: 0 4rem 4rem; }
+  .artifacts-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--white); margin-bottom: .6rem; }
+  .artifacts-section p { font-size: .88rem; color: var(--mist); margin-bottom: 1.8rem; }
+  .artifact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--dim); }
+  .artifact-card { background: var(--indigo-soft); padding: 1.4rem; display: flex; flex-direction: column; gap: .6rem; }
+  .artifact-project { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+  .artifact-name { font-size: .88rem; color: var(--white); font-weight: 400; }
+  .artifact-desc { font-size: .78rem; color: var(--bluegray); line-height: 1.5; }
+  .artifact-dl { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-top: auto; padding-top: .4rem; display: flex; align-items: center; gap: .3rem; transition: opacity .2s; }
+  .artifact-dl:hover { opacity: .7; }
+  .artifact-dl::after { content: '↓'; }
+
+  /* CTA */
+  .cta-strip { background: var(--indigo-mid); border-top: 1px solid var(--dim); padding: 3.5rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+  .cta-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 300; color: var(--white); margin-bottom: .4rem; }
+  .cta-text p { font-size: .88rem; color: var(--mist); }
+  .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-p { padding: .8rem 2rem; background: var(--gold); color: var(--indigo); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: opacity .2s; white-space: nowrap; }
+  .btn-p:hover { opacity: .82; }
+  .btn-s { padding: .8rem 2rem; border: 1px solid rgba(201,169,110,.4); color: var(--gold); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: all .2s; white-space: nowrap; }
+  .btn-s:hover { border-color: var(--gold); background: rgba(201,169,110,.06); }
+
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--dim); display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: .72rem; color: var(--bluegray); }
+  footer a { color: var(--mist); text-decoration: none; font-size: .72rem; }
+  footer a:hover { color: var(--gold); }
+
+  @media(max-width:900px) {
+    nav { padding: 1.5rem 2rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero, .gold-div, .filter-row, .projects, .artifacts-section, .cta-strip, footer { padding-left: 2rem; padding-right: 2rem; }
+    .projects { grid-template-columns: 1fr; }
+    .artifact-grid { grid-template-columns: 1fr 1fr; }
+    .cta-strip { flex-direction: column; align-items: flex-start; }
+  }
+  @media(max-width:600px) {
+    .artifact-grid { grid-template-columns: 1fr; }
+    .nav-links .nav-link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Euleanne Espinal</a>
+  <div class="nav-links">
+    <a href="index.html#about" class="nav-link">About</a>
+    <a href="index.html#work" class="nav-link">Work With Me</a>
+    <a href="index.html#contact" class="nav-link">Contact</a>
+    <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="page-label">Selected Work</div>
+  <h1>Projects &<br><em>Case Studies</em></h1>
+  <p class="hero-desc">A selection of operations, systems, and consulting engagements — covering workflow redesign, KPI reporting, execution planning, and business structure support. Three are illustrative examples of the type of work I do; one is a real client engagement shared with permission.</p>
+</section>
+
+<div class="gold-div"></div>
+
+<div class="filter-row">
+  <span class="filter-label">Type of work</span>
+  <span class="filter-tag">Systems Audit</span>
+  <span class="filter-tag">KPI Dashboard</span>
+  <span class="filter-tag">Execution Planning</span>
+  <span class="filter-tag">Business Foundation</span>
+</div>
+
+<div class="projects">
+
+  <a href="cs1-groundwork-wellness.html" class="project-card">
+    <div class="card-top">
+      <div class="card-number">01</div>
+      <div class="card-type">Business Systems Audit + Workflow Redesign</div>
+      <div class="card-title">From Scattered Operations to a Studio That Runs</div>
+      <div class="card-client">Groundwork Wellness — Tampa, FL</div>
+      <p class="card-desc">A boutique fitness studio had outgrown its informal systems. Scheduling lived in three places, onboarding was person-dependent, and membership renewals were getting missed. I audited four core workflows, identified the gaps, and rebuilt the processes the team could actually maintain.</p>
+      <div class="card-tags">
+        <span class="card-tag">Process Mapping</span>
+        <span class="card-tag">Workflow Redesign</span>
+        <span class="card-tag">SOPs</span>
+        <span class="card-tag">Operations</span>
+      </div>
+    </div>
+    <div class="card-bottom">
+      <span class="card-artifacts">4 workflows · 3 SOPs · ~3 weeks</span>
+      <span class="card-link">View Case Study</span>
+    </div>
+  </a>
+
+  <a href="cs2-property-management.html" class="project-card">
+    <div class="card-top">
+      <div class="card-number">02</div>
+      <div class="card-type">Reporting Dashboard + KPI Visibility</div>
+      <div class="card-title">Making a 60-Unit Portfolio Legible in One View</div>
+      <div class="card-client">Tampa Property Management Co. (anonymized)</div>
+      <p class="card-desc">A two-person property management team was spending hours assembling a performance picture every time someone asked a question. I designed the KPI framework, cleaned the data, and built the Excel dashboard they now open every Monday morning.</p>
+      <div class="card-tags">
+        <span class="card-tag">KPI Design</span>
+        <span class="card-tag">Excel Dashboard</span>
+        <span class="card-tag">Data Organization</span>
+        <span class="card-tag">Reporting</span>
+      </div>
+    </div>
+    <div class="card-bottom">
+      <span class="card-artifacts">6 KPIs · 4-tab dashboard · ~2 weeks</span>
+      <span class="card-link">View Case Study</span>
+    </div>
+  </a>
+
+  <a href="cs3-calla-co-events.html" class="project-card">
+    <div class="card-top">
+      <div class="card-number">03</div>
+      <div class="card-type">Idea-to-Execution Planning System</div>
+      <div class="card-title">Turning a Backlog of Ideas Into a Business With a Plan</div>
+      <div class="card-client">Calla & Co. Events — Tampa Bay Area</div>
+      <p class="card-desc">Two event coordinators had strong instincts and a growing reputation — but no structure for deciding which idea to move on or how. I sorted the backlog, clarified the service offering into three defined tiers, and built the 90-day plan that finally got things moving.</p>
+      <div class="card-tags">
+        <span class="card-tag">Strategic Planning</span>
+        <span class="card-tag">Offer Clarity</span>
+        <span class="card-tag">Execution Design</span>
+        <span class="card-tag">Documentation</span>
+      </div>
+    </div>
+    <div class="card-bottom">
+      <span class="card-artifacts">3 service tiers · 90-day plan · 2 clients booked</span>
+      <span class="card-link">View Case Study</span>
+    </div>
+  </a>
+
+  <a href="cs4-sarah-marie-esthetics.html" class="project-card">
+    <div class="card-top">
+      <div class="card-number">04</div>
+      <div class="real-badge">Real Client Project</div>
+      <div class="card-type">Business Foundation Build</div>
+      <div class="card-title">Building the Foundation a Growing Practice Actually Needed</div>
+      <div class="card-client">Sarah Marie Esthetics</div>
+      <p class="card-desc">A licensed esthetician with real clients and no business structure. I built the complete foundation: business strategy, brand identity, 90-day launch plan, content system, and a custom KPI dashboard — all designed to work together and be maintained by a solo operator.</p>
+      <div class="card-tags">
+        <span class="card-tag">Business Strategy</span>
+        <span class="card-tag">Brand Foundation</span>
+        <span class="card-tag">90-Day Planning</span>
+        <span class="card-tag">KPI Dashboard</span>
+      </div>
+    </div>
+    <div class="card-bottom">
+      <span class="card-artifacts">5 documents · 1 Excel dashboard · Real engagement</span>
+      <span class="card-link">View Case Study</span>
+    </div>
+  </a>
+
+</div>
+
+<div class="gold-div"></div>
+
+<div class="artifacts-section" style="padding-top:3rem;">
+  <h2>Work <em>Samples</em></h2>
+  <p>Downloadable artifacts from each engagement — the actual documents and tools produced.</p>
+  <div class="artifact-grid">
+    <div class="artifact-card">
+      <div class="artifact-project">CS01 · Groundwork Wellness</div>
+      <div class="artifact-name">New Client Onboarding SOP</div>
+      <div class="artifact-desc">Process documentation covering intake, trainer handoff, and post-session filing — built for a team of five.</div>
+      <a href="cs1-sop-workflow.pdf" class="artifact-dl">Download PDF</a>
+    </div>
+    <div class="artifact-card">
+      <div class="artifact-project">CS01 · Groundwork Wellness</div>
+      <div class="artifact-name">Full Case Study</div>
+      <div class="artifact-desc">Complete narrative of the audit findings, redesign decisions, and outcomes.</div>
+      <a href="cs1-groundwork-wellness.pdf" class="artifact-dl">Download PDF</a>
+    </div>
+    <div class="artifact-card">
+      <div class="artifact-project">CS02 · Property Management</div>
+      <div class="artifact-name">KPI Excel Dashboard</div>
+      <div class="artifact-desc">4-tab dashboard: weekly summary, property breakdown, 60-day planning view, and data input template.</div>
+      <a href="cs2-kpi-dashboard.xlsx" class="artifact-dl">Download Excel</a>
+    </div>
+    <div class="artifact-card">
+      <div class="artifact-project">CS02 · Property Management</div>
+      <div class="artifact-name">Full Case Study</div>
+      <div class="artifact-desc">Metric selection rationale, dashboard design approach, and outcomes documented.</div>
+      <a href="cs2-property-management.pdf" class="artifact-dl">Download PDF</a>
+    </div>
+    <div class="artifact-card">
+      <div class="artifact-project">CS03 · Calla & Co. Events</div>
+      <div class="artifact-name">Planning Template</div>
+      <div class="artifact-desc">Priority scoring matrix, idea inventory, 90-day execution plan, and follow-through system.</div>
+      <a href="cs3-planning-template.pdf" class="artifact-dl">Download PDF</a>
+    </div>
+    <div class="artifact-card">
+      <div class="artifact-project">CS04 · Sarah Marie Esthetics</div>
+      <div class="artifact-name">Full Case Study</div>
+      <div class="artifact-desc">Complete documentation of all five deliverables built during the engagement.</div>
+      <a href="cs4-sarah-marie-esthetics.pdf" class="artifact-dl">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<div class="cta-strip">
+  <div class="cta-text">
+    <h3>See something that fits what you need?</h3>
+    <p>I'm available for focused operations, systems, and consulting engagements.</p>
+  </div>
+  <div class="cta-btns">
+    <a href="https://tally.so/r/GxDG9Z" class="btn-p">Fill Out Intake Form</a>
+    <a href="index.html#contact" class="btn-s">Contact Me</a>
+  </div>
+</div>
+
+<footer>
+  <p>Euleanne Espinal · Tampa, FL · Open to Remote</p>
+  <a href="index.html">← Back to Main Site</a>
+</footer>
+
+</body>
+</html>

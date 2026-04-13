@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Management KPI Dashboard — Euleanne Espinal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo: #1a1a2e; --indigo-mid: #16213e; --indigo-soft: #1f2b4a;
+    --mist: #a8b8cc; --gold: #c9a96e; --gold-light: #e2c99a;
+    --cream: #f4f0e8; --white: #fafaf8; --dim: rgba(168,184,204,0.1);
+    --bluegray: #718096;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--indigo); color: var(--cream); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+
+  nav { padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--dim); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: .12em; color: var(--mist); text-decoration: none; }
+  .nav-back { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: opacity .2s; }
+  .nav-back:hover { opacity: .6; }
+
+  /* HERO */
+  .hero { max-width: 1100px; margin: 0 auto; padding: 5rem 4rem 3rem; }
+  .project-meta { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: .8rem; }
+  .project-meta::before { content: ''; width: 28px; height: 1px; background: var(--gold); display: block; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,4.5vw,3.8rem); font-weight: 300; line-height: 1.12; color: var(--white); margin-bottom: .5rem; max-width: 700px; }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .client-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--mist); margin-bottom: 2rem; }
+  .hero-desc { font-size: .96rem; color: var(--mist); line-height: 1.85; max-width: 620px; margin-bottom: 3rem; }
+
+  /* MOCK DASHBOARD */
+  .dash-wrap { max-width: 1100px; margin: 0 auto; padding: 0 4rem 3rem; }
+  .dash-label { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--bluegray); margin-bottom: 1rem; }
+  .dash { background: var(--indigo-mid); border: 1px solid var(--dim); padding: 1.8rem; }
+  .dash-kpis { display: grid; grid-template-columns: repeat(6,1fr); gap: 1px; margin-bottom: 1px; background: var(--dim); }
+  .kpi { background: var(--indigo-soft); padding: 1rem .9rem; }
+  .kpi-label { font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bluegray); margin-bottom: .35rem; }
+  .kpi-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--white); line-height: 1; margin-bottom: .2rem; }
+  .kpi-trend { font-size: .68rem; color: var(--gold); }
+  .dash-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--dim); }
+  .dash-panel { background: var(--indigo-soft); padding: 1rem .9rem; }
+  .dp-label { font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bluegray); margin-bottom: .8rem; }
+  .bar-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem; }
+  .bar-name { font-size: .72rem; color: var(--mist); width: 70px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 6px; background: rgba(168,184,204,.08); position: relative; }
+  .bar-fill { height: 100%; background: rgba(201,169,110,.4); border-right: 2px solid var(--gold); }
+  .bar-pct { font-size: .68rem; color: var(--bluegray); width: 36px; text-align: right; }
+  .expiry-row { display: flex; justify-content: space-between; align-items: center; padding: .4rem 0; border-bottom: 1px solid var(--dim); font-size: .74rem; }
+  .expiry-row:last-child { border-bottom: none; }
+  .expiry-unit { color: var(--mist); }
+  .expiry-days { color: var(--gold); }
+  .expiry-flag { font-size: .64rem; color: var(--bluegray); }
+
+  .tags { max-width: 1100px; margin: 0 auto; padding: 0 4rem 2rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+  .tag { padding: .3rem .85rem; border: 1px solid rgba(168,184,204,.2); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); }
+
+  .gold-div { max-width: 1100px; margin: 0 auto; padding: 0 4rem; height: 1px; background: linear-gradient(90deg,transparent,rgba(201,169,110,.35),transparent); }
+
+  .case-body { max-width: 1100px; margin: 0 auto; padding: 4rem; display: grid; grid-template-columns: 1fr 300px; gap: 5rem; align-items: start; }
+  .main h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 400; color: var(--white); margin-bottom: 1rem; margin-top: 3rem; }
+  .main h2:first-child { margin-top: 0; }
+  .main p { font-size: .95rem; color: var(--mist); line-height: 1.9; margin-bottom: 1rem; }
+
+  .pull-quote { border-left: 2px solid var(--gold); padding: 1.6rem 2rem; margin: 2.5rem 0; background: linear-gradient(135deg,rgba(201,169,110,.07),transparent); }
+  .pull-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-style: italic; color: var(--gold-light); line-height: 1.65; margin: 0; }
+
+  /* METRICS LIST */
+  .metrics { display: flex; flex-direction: column; gap: .7rem; margin: 1.5rem 0; }
+  .metric { background: var(--indigo-soft); border: 1px solid var(--dim); padding: 1.2rem 1.4rem; display: flex; gap: 1.2rem; align-items: flex-start; }
+  .metric-num { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); flex-shrink: 0; width: 24px; }
+  .metric-text h4 { font-size: .84rem; font-weight: 500; color: var(--white); margin-bottom: .3rem; }
+  .metric-text p { font-size: .82rem; color: var(--bluegray); line-height: 1.6; margin: 0; }
+
+  .del-list { display: flex; flex-direction: column; gap: .7rem; margin: 1.5rem 0; }
+  .del-item { display: flex; gap: .8rem; font-size: .9rem; color: var(--mist); line-height: 1.65; }
+  .del-item::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+  .results { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin: 2rem 0; background: var(--dim); }
+  .result { background: var(--indigo-soft); padding: 1.6rem; text-align: center; }
+  .result-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); line-height: 1; margin-bottom: .4rem; }
+  .result-label { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); line-height: 1.4; }
+
+  .sidebar { position: sticky; top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .sidebar-card { background: var(--indigo-soft); border: 1px solid var(--dim); padding: 1.6rem; }
+  .sidebar-card h5 { font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+  .sc-row { padding: .7rem 0; border-bottom: 1px solid var(--dim); }
+  .sc-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .sc-label { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bluegray); margin-bottom: .25rem; }
+  .sc-val { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--white); }
+  .sidebar-card p { font-size: .84rem; color: var(--mist); line-height: 1.7; }
+
+  .cta { background: var(--indigo-mid); border-top: 1px solid var(--dim); padding: 4rem; text-align: center; }
+  .cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: var(--white); margin-bottom: .7rem; }
+  .cta p { color: var(--mist); font-size: .9rem; margin-bottom: 2rem; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-p { padding: .8rem 2rem; background: var(--gold); color: var(--indigo); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: opacity .2s; }
+  .btn-p:hover { opacity: .82; }
+  .btn-s { padding: .8rem 2rem; border: 1px solid rgba(201,169,110,.4); color: var(--gold); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: all .2s; }
+  .btn-s:hover { border-color: var(--gold); background: rgba(201,169,110,.06); }
+
+  @media(max-width:900px) {
+    nav, .hero, .dash-wrap, .tags, .gold-div, .case-body, .cta { padding-left: 2rem; padding-right: 2rem; }
+    .dash-kpis { grid-template-columns: repeat(3,1fr); }
+    .dash-bottom { grid-template-columns: 1fr; }
+    .case-body { grid-template-columns: 1fr; gap: 3rem; }
+    .sidebar { position: static; }
+    .results { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Euleanne Espinal</a>
+  <a href="index.html#work" class="nav-back">← Back to Work</a>
+</nav>
+
+<section class="hero">
+  <div class="project-meta">Case Study 02 &nbsp;·&nbsp; Reporting Dashboard + KPI Visibility</div>
+  <h1>Making a 60-Unit Portfolio<br><em>Legible in One View</em></h1>
+  <div class="client-name">Tampa-based Property Management Company (anonymized)</div>
+  <p class="hero-desc">A two-person property management team knew roughly how their portfolio was performing — but turning "roughly" into an actual answer required hours of manual work every time someone asked. I designed the KPI framework, cleaned the data, and built the dashboard they now open every Monday morning.</p>
+</section>
+
+<div class="dash-wrap">
+  <div class="dash-label">Dashboard Preview — Weekly Summary View</div>
+  <div class="dash">
+    <div class="dash-kpis">
+      <div class="kpi"><div class="kpi-label">Portfolio Occupancy</div><div class="kpi-val">93%</div><div class="kpi-trend">↑ 2pts this month</div></div>
+      <div class="kpi"><div class="kpi-label">Units Vacant</div><div class="kpi-val">4</div><div class="kpi-trend">2 flagged &gt;21 days</div></div>
+      <div class="kpi"><div class="kpi-label">Revenue MTD</div><div class="kpi-val">$48.2K</div><div class="kpi-trend">↑ vs $46.1K proj.</div></div>
+      <div class="kpi"><div class="kpi-label">Open Maintenance</div><div class="kpi-val">11</div><div class="kpi-trend">3 over 7-day SLA</div></div>
+      <div class="kpi"><div class="kpi-label">Leases &lt;60 Days</div><div class="kpi-val">7</div><div class="kpi-trend">Action required</div></div>
+      <div class="kpi"><div class="kpi-label">Turnover Rate</div><div class="kpi-val">18%</div><div class="kpi-trend">↓ from 24% Q3</div></div>
+    </div>
+    <div class="dash-bottom">
+      <div class="dash-panel">
+        <div class="dp-label">Occupancy by Property</div>
+        <div class="bar-row"><span class="bar-name">Hillsboro</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-pct">100%</span></div>
+        <div class="bar-row"><span class="bar-name">Bayshore</span><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><span class="bar-pct">92%</span></div>
+        <div class="bar-row"><span class="bar-name">Seminole</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><span class="bar-pct">88%</span></div>
+        <div class="bar-row"><span class="bar-name">Westchase</span><div class="bar-track"><div class="bar-fill" style="width:83%"></div></div><span class="bar-pct">83%</span></div>
+      </div>
+      <div class="dash-panel">
+        <div class="dp-label">Upcoming Lease Expirations</div>
+        <div class="expiry-row"><span class="expiry-unit">Unit 2B — Bayshore</span><span class="expiry-days">12 days</span><span class="expiry-flag">⚠ Outreach due</span></div>
+        <div class="expiry-row"><span class="expiry-unit">Unit 1A — Westchase</span><span class="expiry-days">19 days</span><span class="expiry-flag">⚠ Outreach due</span></div>
+        <div class="expiry-row"><span class="expiry-unit">Unit 4C — Seminole</span><span class="expiry-days">34 days</span><span class="expiry-flag">Monitor</span></div>
+        <div class="expiry-row"><span class="expiry-unit">Unit 3A — Bayshore</span><span class="expiry-days">51 days</span><span class="expiry-flag">Monitor</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tags">
+  <span class="tag">KPI Design</span><span class="tag">Excel Dashboard</span><span class="tag">Data Organization</span>
+  <span class="tag">Reporting</span><span class="tag">Property Management</span><span class="tag">Operations</span>
+</div>
+
+<div class="gold-div"></div>
+
+<div class="case-body">
+  <div class="main">
+
+    <h2>The Situation</h2>
+    <p>The company had been managing 60+ residential units across four properties for several years. The operation ran well in practice — tenants were taken care of, maintenance got handled, rent came in. But there was no organized way to see how the portfolio was performing at any given moment.</p>
+    <p>Occupancy data lived in one spreadsheet. Maintenance requests were tracked in another. Lease expirations were in a calendar only one person could access. Revenue figures were in an accounting tool the other team member had never opened. When they needed an actual picture of how things were going — for a lender conversation, for year-end planning, for a hiring decision — someone had to spend hours pulling numbers from four places and assembling something that was already out of date by the time it was done.</p>
+    <p>What they needed wasn't a complex analytics platform. They needed a dashboard a two-person team could update in twenty minutes and read in five.</p>
+
+    <div class="pull-quote">
+      <p>"We knew roughly how things were going. But 'roughly' wasn't good enough when someone needed an actual answer."</p>
+    </div>
+
+    <h2>Identifying the Right Metrics</h2>
+    <p>Before building anything, I worked with the owner to identify which numbers actually mattered for how the business made decisions. The question wasn't "what could we track" — it was "what do you look at when something needs your attention." We landed on six metrics that between them covered the full health of the portfolio.</p>
+
+    <div class="metrics">
+      <div class="metric"><div class="metric-num">1</div><div class="metric-text"><h4>Occupancy rate by property</h4><p>The single most important number — and the one that had taken the longest to find before this engagement.</p></div></div>
+      <div class="metric"><div class="metric-num">2</div><div class="metric-text"><h4>Days vacant per unit (rolling)</h4><p>Flagging units sitting empty longer than average — an early signal of a pricing or listing problem.</p></div></div>
+      <div class="metric"><div class="metric-num">3</div><div class="metric-text"><h4>Maintenance requests open vs. closed</h4><p>Visibility into backlog and response time — two things that directly affect tenant retention.</p></div></div>
+      <div class="metric"><div class="metric-num">4</div><div class="metric-text"><h4>Lease expirations in the next 60 days</h4><p>A forward-looking view that gave the team time to act rather than react to turnover.</p></div></div>
+      <div class="metric"><div class="metric-num">5</div><div class="metric-text"><h4>Monthly revenue vs. projected</h4><p>Actual vs. expected, by property, so variance was visible at a glance without opening the accounting tool.</p></div></div>
+      <div class="metric"><div class="metric-num">6</div><div class="metric-text"><h4>Tenant turnover rate (quarterly)</h4><p>Tracked over time to surface whether retention was improving or declining — and prompt a conversation about why.</p></div></div>
+    </div>
+
+    <h2>What I Built</h2>
+    <p>The dashboard was built in Excel — chosen deliberately because it was the tool the team already knew. Adding a new platform would have created a maintenance problem, not solved one. I first audited and cleaned the existing data sources so numbers were consistent and comparable across all four properties.</p>
+    <p>The dashboard has three views: a weekly summary (the one they open every Monday), a property-by-property breakdown, and a 60-day forward-looking tab for lease and vacancy planning. Conditional formatting flags anything that needs attention — occupancy below threshold, maintenance backlog over a set number, leases expiring within 30 days — so the team doesn't have to read every row to know where to focus.</p>
+
+    <div class="del-list">
+      <div class="del-item">Cleaned data input template with consistent field names and validation rules across all four properties</div>
+      <div class="del-item">Three-tab Excel dashboard: weekly summary, property breakdown, and 60-day planning view</div>
+      <div class="del-item">Conditional formatting logic that surfaces issues without requiring manual review of every row</div>
+      <div class="del-item">Maintenance guide documenting how to update each tab, where data comes from, and what each flag means</div>
+      <div class="del-item">Walkthrough session with both team members to confirm independent maintenance capability</div>
+    </div>
+
+    <h2>Outcome</h2>
+    <p>The team went from spending several hours assembling a performance picture to having it ready every Monday morning in under twenty minutes. Within the first month of use, they caught two units trending toward extended vacancy early enough to adjust pricing before they sat empty. The lease expiration view surfaced three upcoming renewals that would have been missed entirely.</p>
+    <p>The less quantifiable outcome: both team members could now answer questions about how the portfolio was doing without going to each other or digging through separate tools. That information was visible, shared, and current.</p>
+
+    <div class="results">
+      <div class="result"><div class="result-val">6</div><div class="result-label">KPIs designed<br>& tracked</div></div>
+      <div class="result"><div class="result-val">3</div><div class="result-label">Dashboard views<br>built</div></div>
+      <div class="result"><div class="result-val">&lt;20 min</div><div class="result-label">Weekly update<br>time</div></div>
+    </div>
+
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h5>Project Scope</h5>
+      <div class="sc-row"><div class="sc-label">Client</div><div class="sc-val">Residential PM Company (anonymized)</div></div>
+      <div class="sc-row"><div class="sc-label">Portfolio</div><div class="sc-val">60+ units, 4 properties</div></div>
+      <div class="sc-row"><div class="sc-label">Duration</div><div class="sc-val">~2 weeks</div></div>
+      <div class="sc-row"><div class="sc-label">Tools</div><div class="sc-val">Excel · Google Sheets</div></div>
+    </div>
+    <div class="sidebar-card">
+      <h5>Certifications Applied</h5>
+      <div class="sc-row"><div class="sc-label">Google Data Analytics</div><div class="sc-val">Data cleaning, KPI logic, structured reporting</div></div>
+      <div class="sc-row"><div class="sc-label">Microsoft Power BI</div><div class="sc-val">Dashboard design principles, data modeling</div></div>
+    </div>
+    <div class="sidebar-card">
+      <h5>Note on Anonymization</h5>
+      <p>The client requested that their business name not appear publicly. All figures in the dashboard preview above are illustrative and do not reflect actual client data.</p>
+    </div>
+  </aside>
+</div>
+
+<section class="cta">
+  <h3>Need visibility into how your business is performing?</h3>
+  <p>Let's identify what matters, clean up the data, and build something you'll actually use.</p>
+  <div class="cta-btns">
+    <a href="contact.html" class="btn-p">Start a Conversation</a>
+    <a href="cs2-property-management.pdf" class="btn-s">Download Case Study PDF</a>
+  </div>
+</section>
+
+</body>
+</html>
