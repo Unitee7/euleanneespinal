@@ -290,6 +290,93 @@
     .hero-ctas .btn { text-align: center; }
     .strengths-grid { grid-template-columns: 1fr; }
   }
+
+  /* PROJECTS */
+  #projects { background: var(--fog); }
+  .projects-header { margin-bottom: 2.5rem; display: flex; flex-direction: column; }
+  .projects-header .section-title { margin-bottom: 0.6rem; }
+  .projects-sub {
+    font-size: 14px; font-weight: 300; color: var(--text-light);
+    max-width: 520px; line-height: 1.85; margin-bottom: 1rem;
+  }
+  .projects-view-all {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--indigo-mid); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: opacity 0.2s;
+  }
+  .projects-view-all:hover { opacity: 0.65; }
+  .projects-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; margin-bottom: 2rem;
+  }
+  .pj-card {
+    background: var(--warm-white); border: 1px solid var(--powder);
+    display: flex; flex-direction: column; text-decoration: none;
+    transition: border-color 0.25s, transform 0.2s, box-shadow 0.2s;
+  }
+  .pj-card:hover {
+    border-color: var(--mist);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(26,34,64,0.08);
+  }
+  .pj-card--real { border-color: rgba(46,63,120,0.2); }
+  .pj-top { padding: 1.6rem 1.6rem 1.2rem; flex: 1; }
+  .pj-num {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--indigo-mid); margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .pj-num::before { content: ''; width: 16px; height: 1px; background: var(--indigo-mid); display: block; }
+  .pj-real-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(46,63,120,0.07); border: 1px solid rgba(46,63,120,0.18);
+    padding: 3px 9px; font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--indigo-mid); margin-bottom: 0.7rem;
+  }
+  .pj-real-badge::before { content: '●'; font-size: 5px; }
+  .pj-type {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-faint); margin-bottom: 0.5rem;
+  }
+  .pj-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+    font-weight: 400; line-height: 1.2; color: var(--midnight); margin-bottom: 0.3rem;
+  }
+  .pj-client {
+    font-family: 'Cormorant Garamond', serif; font-size: 0.88rem;
+    font-style: italic; color: var(--text-light); margin-bottom: 0.9rem;
+  }
+  .pj-desc { font-size: 12px; font-weight: 300; color: var(--text-light); line-height: 1.75; }
+  .pj-bottom {
+    border-top: 1px solid var(--divider); padding: 0.9rem 1.6rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .pj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .pj-tags span {
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 8px; background: var(--fog); border: 1px solid var(--powder);
+    color: var(--text-light);
+  }
+  .pj-link {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--indigo-mid); flex-shrink: 0; margin-left: 10px;
+  }
+  .projects-footer-row { text-align: center; padding-top: 0.5rem; }
+  .projects-full-link {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-light); text-decoration: none;
+    border-bottom: 1px solid var(--powder); padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .projects-full-link:hover { color: var(--indigo-mid); border-color: var(--mist); }
+  @media (max-width: 780px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -299,6 +386,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#strengths">Strengths</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#work">Work With Me</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -390,6 +478,81 @@
   </div>
 </section>
  
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="projects-header fade">
+      <span class="label">Selected Work</span>
+      <h2 class="section-title">Projects &amp;<br><em>Case Studies</em></h2>
+      <p class="projects-sub">A selection of operations, systems, and consulting engagements — covering workflow redesign, KPI reporting, execution planning, and business structure support.</p>
+      <a href="projects.html" class="projects-view-all">View all projects + downloadable work samples →</a>
+    </div>
+    <div class="projects-grid fade">
+
+      <a href="cs1-groundwork-wellness.html" class="pj-card">
+        <div class="pj-top">
+          <div class="pj-num">01</div>
+          <div class="pj-type">Systems Audit + Workflow Redesign</div>
+          <div class="pj-title">From Scattered Operations<br>to a Studio That Runs</div>
+          <div class="pj-client">Groundwork Wellness</div>
+          <p class="pj-desc">Audited four core workflows at a boutique fitness studio, identified where things were breaking down, and rebuilt the processes the team could actually maintain.</p>
+        </div>
+        <div class="pj-bottom">
+          <div class="pj-tags"><span>Process Mapping</span><span>SOPs</span><span>Operations</span></div>
+          <span class="pj-link">View →</span>
+        </div>
+      </a>
+
+      <a href="cs2-property-management.html" class="pj-card">
+        <div class="pj-top">
+          <div class="pj-num">02</div>
+          <div class="pj-type">Reporting Dashboard + KPI Visibility</div>
+          <div class="pj-title">Making a 60-Unit Portfolio<br>Legible in One View</div>
+          <div class="pj-client">Tampa Property Management Co.</div>
+          <p class="pj-desc">Designed a KPI framework, cleaned the data, and built the Excel dashboard a two-person team now uses every Monday to understand how their portfolio is performing.</p>
+        </div>
+        <div class="pj-bottom">
+          <div class="pj-tags"><span>KPI Design</span><span>Excel Dashboard</span><span>Reporting</span></div>
+          <span class="pj-link">View →</span>
+        </div>
+      </a>
+
+      <a href="cs3-calla-co-events.html" class="pj-card">
+        <div class="pj-top">
+          <div class="pj-num">03</div>
+          <div class="pj-type">Idea-to-Execution Planning</div>
+          <div class="pj-title">Turning a Backlog of Ideas<br>Into a Business With a Plan</div>
+          <div class="pj-client">Calla &amp; Co. Events</div>
+          <p class="pj-desc">Sorted a stalled idea backlog, clarified the service offering into three defined tiers, and built the 90-day plan that moved two clients from prospect to booked.</p>
+        </div>
+        <div class="pj-bottom">
+          <div class="pj-tags"><span>Strategic Planning</span><span>Offer Clarity</span><span>Documentation</span></div>
+          <span class="pj-link">View →</span>
+        </div>
+      </a>
+
+      <a href="cs4-sarah-marie-esthetics.html" class="pj-card pj-card--real">
+        <div class="pj-top">
+          <div class="pj-num">04</div>
+          <div class="pj-real-badge">Real Client</div>
+          <div class="pj-type">Business Foundation Build</div>
+          <div class="pj-title">Building the Foundation a<br>Growing Practice Needed</div>
+          <div class="pj-client">Sarah Marie Esthetics</div>
+          <p class="pj-desc">Built the complete operational foundation for an independent esthetician: business strategy, brand identity, 90-day launch plan, content system, and KPI dashboard.</p>
+        </div>
+        <div class="pj-bottom">
+          <div class="pj-tags"><span>Strategy</span><span>Brand</span><span>90-Day Plan</span><span>Dashboard</span></div>
+          <span class="pj-link">View →</span>
+        </div>
+      </a>
+
+    </div>
+    <div class="projects-footer-row">
+      <a href="projects.html" class="projects-full-link">See all projects + downloadable work samples →</a>
+    </div>
+  </div>
+</section>
+
 <!-- WORK WITH ME -->
 <section id="work">
   <div class="wrap">
@@ -453,9 +616,9 @@
         <h2 class="section-title">Get in<br><em>touch</em></h2>
         <p>Whether you're a recruiter, hiring manager, or someone interested in working together, I'm happy to connect. The best way to reach me is directly by email or through LinkedIn.</p>
         <div class="contact-links">
-          <a href="mailto:Eulea.work@gmail.com" class="c-link">
+          <a href="/cdn-cgi/l/email-protection#5a1f2f363f3b742d3528311a3d373b333674393537" class="c-link">
             <div class="c-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 7 10-7"/></svg></div>
-            <div class="c-meta"><span class="c-label">Email</span><span class="c-val">Eulea.work@gmail.com</span></div>
+            <div class="c-meta"><span class="c-label">Email</span><span class="c-val"><span class="__cf_email__" data-cfemail="7336061f16125d041c011833141e121a1f5d101c1e">[email&#160;protected]</span></span></div>
           </a>
           <a href="https://www.linkedin.com/in/euleanneespinal" target="_blank" class="c-link">
             <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
@@ -484,19 +647,10 @@
   <span class="foot-right">Tampa, FL · Open to Remote Roles</span>
 </footer>
  
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const fades = document.querySelectorAll('.fade');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   fades.forEach(el => obs.observe(el));
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
-    });
-  });
-</script>
-</body>
-</html>
- 
+  document.querySelectorAll('a[href^="
