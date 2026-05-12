@@ -86,8 +86,6 @@
   .btn-outline:hover { border-color: var(--indigo-mid); color: var(--indigo-mid); transform: translateY(-1px); }
   .btn-ghost { background: transparent; color: var(--text-light); border-color: var(--divider); }
   .btn-ghost:hover { border-color: var(--mist); color: var(--text-mid); transform: translateY(-1px); }
-  .btn-light { background: var(--off-white); color: var(--midnight); border-color: var(--off-white); }
-  .btn-light:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
  
   /* HERO */
   #hero {
@@ -134,7 +132,7 @@
   }
   .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
  
-  /* PHOTO — fixed: no pseudo-element border, clean circle */
+  /* PHOTO */
   .hero-photo-wrap {
     position: relative;
     animation: fadeUp 0.85s 0.15s ease both;
@@ -202,32 +200,6 @@
   .str-name { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 5px; }
   .str-desc { font-size: 12px; font-weight: 300; color: var(--text-light); line-height: 1.6; }
  
-  /* WORK WITH ME */
-  #work { background: var(--midnight); }
-  #work .label { color: rgba(168,184,212,0.45); }
-  #work .section-title { color: var(--off-white); }
-  #work .section-title em { color: var(--mist); }
-  .work-intro {
-    font-size: 14px; font-weight: 300; color: var(--mist); opacity: 0.8;
-    max-width: 540px; line-height: 1.9; margin-bottom: 40px;
-  }
-  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 36px; }
-  .svc {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(168,184,212,0.1);
-    padding: 30px 26px; transition: all 0.25s ease;
-  }
-  .svc:hover { background: rgba(255,255,255,0.07); border-color: rgba(168,184,212,0.2); transform: translateY(-2px); }
-  .svc-num { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--blue-gray); opacity: 0.55; margin-bottom: 14px; display: block; }
-  .svc-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--off-white); margin-bottom: 10px; line-height: 1.3; }
-  .svc-desc { font-size: 13px; font-weight: 300; color: var(--mist); line-height: 1.8; opacity: 0.8; margin-bottom: 18px; }
-  .svc-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 22px; }
-  .svc-bullets li { font-size: 12px; font-weight: 300; color: var(--mist); opacity: 0.6; padding-left: 14px; position: relative; }
-  .svc-bullets li::before { content: '·'; position: absolute; left: 4px; color: var(--blue-gray); }
-  .svc-price { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--off-white); display: block; }
-  .svc-price-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--blue-gray); opacity: 0.5; display: block; margin-top: 3px; }
-  .work-cta { display: flex; align-items: center; gap: 18px; }
-  .work-note { font-size: 13px; font-weight: 300; color: var(--mist); opacity: 0.4; }
- 
   /* CONTACT */
   #contact { background: var(--off-white); border-bottom: none; }
   .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
@@ -255,7 +227,7 @@
   }
   .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #5a9e6f; animation: pulse 2.5s ease-in-out infinite; }
   .avail-text { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--text-mid); }
-  .contact-note { font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.85; margin-bottom: 22px; }
+  .contact-note { font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.85; }
  
   /* FOOTER */
   footer {
@@ -281,56 +253,58 @@
     .hero-photo-wrap { max-width: 240px; order: -1; margin: 0 auto; }
     #hero { padding-top: 72px; }
     .strengths-grid { grid-template-columns: repeat(2, 1fr); }
-    .services-grid { grid-template-columns: 1fr; }
     footer { padding: 18px 24px; flex-direction: column; gap: 6px; text-align: center; }
-    .work-cta { flex-direction: column; align-items: flex-start; }
   }
   @media (max-width: 500px) {
     .hero-ctas { flex-direction: column; }
     .hero-ctas .btn { text-align: center; }
     .strengths-grid { grid-template-columns: 1fr; }
   }
-
+ 
   /* PROJECTS */
-  #projects { background: var(--fog); }
+  #projects { background: var(--midnight); border-color: rgba(168,184,212,0.08); }
+  #projects .label { color: rgba(168,184,212,0.4); }
+  #projects .section-title { color: var(--off-white); }
+  #projects .section-title em { color: var(--mist); }
   .projects-header { margin-bottom: 2.5rem; }
   .projects-sub {
-    font-size: 14px; font-weight: 300; color: var(--text-light);
-    max-width: 520px; line-height: 1.85; margin-bottom: 1rem;
+    font-size: 14px; font-weight: 300; color: var(--mist);
+    opacity: 0.75; max-width: 520px; line-height: 1.85; margin-bottom: 1rem;
   }
   .projects-view-all {
     font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--indigo-mid); text-decoration: none;
+    color: var(--mist); text-decoration: none;
     display: inline-flex; align-items: center; gap: 6px;
-    transition: opacity 0.2s;
+    opacity: 0.6; transition: opacity 0.2s;
   }
-  .projects-view-all:hover { opacity: 0.65; }
+  .projects-view-all:hover { opacity: 1; }
   .projects-grid {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 2px; margin-bottom: 2rem;
+    gap: 3px; margin-bottom: 2rem;
   }
   .pj-card {
-    background: var(--warm-white); border: 1px solid var(--powder);
+    background: var(--powder); border: 1px solid var(--mist);
     display: flex; flex-direction: column; text-decoration: none;
-    transition: border-color 0.25s, transform 0.2s, box-shadow 0.2s;
+    transition: border-color 0.25s, transform 0.2s, box-shadow 0.2s, background 0.25s;
   }
   .pj-card:hover {
-    border-color: var(--mist);
+    background: var(--mist);
+    border-color: var(--blue-gray);
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(26,34,64,0.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
   }
-  .pj-card--real { border-color: rgba(46,63,120,0.2); }
+  .pj-card--real { border-color: var(--blue-gray); }
   .pj-top { padding: 1.6rem 1.6rem 1.2rem; flex: 1; }
   .pj-num {
     font-family: 'DM Mono', monospace; font-size: 10px;
     letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--indigo-mid); margin-bottom: 0.8rem;
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 8px; opacity: 0.7;
   }
   .pj-num::before { content: ''; width: 16px; height: 1px; background: var(--indigo-mid); display: block; }
   .pj-real-badge {
     display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(46,63,120,0.07); border: 1px solid rgba(46,63,120,0.18);
+    background: rgba(46,63,120,0.1); border: 1px solid rgba(46,63,120,0.25);
     padding: 3px 9px; font-family: 'DM Mono', monospace;
     font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--indigo-mid); margin-bottom: 0.7rem;
@@ -339,7 +313,7 @@
   .pj-type {
     font-family: 'DM Mono', monospace; font-size: 9px;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--text-faint); margin-bottom: 0.5rem;
+    color: var(--text-mid); opacity: 0.6; margin-bottom: 0.5rem;
   }
   .pj-title {
     font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
@@ -347,34 +321,36 @@
   }
   .pj-client {
     font-family: 'Cormorant Garamond', serif; font-size: 0.88rem;
-    font-style: italic; color: var(--text-light); margin-bottom: 0.9rem;
+    font-style: italic; color: var(--text-mid); margin-bottom: 0.9rem;
   }
-  .pj-desc { font-size: 12px; font-weight: 300; color: var(--text-light); line-height: 1.75; }
+  .pj-desc { font-size: 12px; font-weight: 300; color: var(--text-mid); line-height: 1.75; }
   .pj-bottom {
-    border-top: 1px solid var(--divider); padding: 0.9rem 1.6rem;
+    border-top: 1px solid rgba(91,111,154,0.2); padding: 0.9rem 1.6rem;
     display: flex; justify-content: space-between; align-items: center;
   }
   .pj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
   .pj-tags span {
     font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 3px 8px; background: var(--fog); border: 1px solid var(--powder);
-    color: var(--text-light);
+    padding: 3px 8px; background: rgba(26,34,64,0.08); border: 1px solid rgba(26,34,64,0.15);
+    color: var(--text-mid);
   }
   .pj-link {
     font-family: 'DM Mono', monospace; font-size: 10px;
     letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--indigo-mid); flex-shrink: 0; margin-left: 10px;
+    color: var(--indigo-mid); flex-shrink: 0; margin-left: 10px; opacity: 0.7;
+    transition: opacity 0.2s;
   }
+  .pj-card:hover .pj-link { opacity: 1; }
   .projects-footer-row { text-align: center; padding-top: 0.5rem; }
   .projects-full-link {
     font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--text-light); text-decoration: none;
-    border-bottom: 1px solid var(--powder); padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
+    color: var(--mist); text-decoration: none; opacity: 0.45;
+    border-bottom: 1px solid rgba(168,184,212,0.2); padding-bottom: 2px;
+    transition: opacity 0.2s, border-color 0.2s;
   }
-  .projects-full-link:hover { color: var(--indigo-mid); border-color: var(--mist); }
+  .projects-full-link:hover { opacity: 0.9; border-color: rgba(168,184,212,0.5); }
   @media (max-width: 780px) { .projects-grid { grid-template-columns: 1fr; } }
-
+ 
 </style>
 </head>
 <body>
@@ -385,7 +361,6 @@
     <li><a href="#about">About</a></li>
     <li><a href="#strengths">Strengths</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#work">Work With Me</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -404,7 +379,7 @@
         <div class="hero-ctas">
           <a href="resume.pdf" target="_blank" class="btn btn-primary">Download Resume</a>
           <a href="https://www.linkedin.com/in/euleanneespinal" target="_blank" class="btn btn-outline">Connect on LinkedIn</a>
-          <a href="#work" class="btn btn-ghost">Work With Me</a>
+          <a href="#contact" class="btn btn-ghost">Get in Touch</a>
         </div>
       </div>
       <div class="hero-photo-wrap">
@@ -486,7 +461,7 @@
       <a href="projects.html" class="projects-view-all">View all projects + downloadable work samples &rarr;</a>
     </div>
     <div class="projects-grid fade">
-
+ 
       <a href="cs1-groundwork-wellness.html" class="pj-card">
         <div class="pj-top">
           <div class="pj-num">01</div>
@@ -500,7 +475,7 @@
           <span class="pj-link">View &rarr;</span>
         </div>
       </a>
-
+ 
       <a href="cs2-property-management.html" class="pj-card">
         <div class="pj-top">
           <div class="pj-num">02</div>
@@ -514,7 +489,7 @@
           <span class="pj-link">View &rarr;</span>
         </div>
       </a>
-
+ 
       <a href="cs3-calla-co-events.html" class="pj-card">
         <div class="pj-top">
           <div class="pj-num">03</div>
@@ -528,7 +503,7 @@
           <span class="pj-link">View &rarr;</span>
         </div>
       </a>
-
+ 
       <a href="cs4-sarah-marie-esthetics.html" class="pj-card pj-card--real">
         <div class="pj-top">
           <div class="pj-num">04</div>
@@ -543,63 +518,10 @@
           <span class="pj-link">View &rarr;</span>
         </div>
       </a>
-
+ 
     </div>
     <div class="projects-footer-row">
       <a href="projects.html" class="projects-full-link">See all projects + downloadable work samples &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- WORK WITH ME -->
-<section id="work">
-  <div class="wrap">
-    <span class="label">Work With Me</span>
-    <h2 class="section-title">Systems Studio Workshop<br><em>Available for Business Consulting &amp; Support</em></h2>
-    <p class="work-intro">I help real estate and wellness business owners organize their backend systems — things like leads, follow-ups, client flow, booking, communication, and internal processes — so they can run their business with more clarity and less chaos.</p>
-    <div class="services-grid fade">
-      <div class="svc">
-        <span class="svc-num">01</span>
-        <div class="svc-name">Free Business Flow Diagnostic</div>
-        <p class="svc-desc">A free entry-point assessment designed to identify the main operational gap affecting your business.</p>
-        <ul class="svc-bullets">
-          <li>Complete a short questionnaire before the call</li>
-          <li>30-minute diagnostic discovery call</li>
-          <li>I review your responses and ask follow-up questions</li>
-          <li>Identify the primary bottleneck slowing your workflow</li>
-        </ul>
-        <span class="svc-price">Free</span>
-        <span class="svc-price-label">30 Min · Entry-Point Assessment</span>
-      </div>
-      <div class="svc">
-        <span class="svc-num">02</span>
-        <div class="svc-name">Custom Strategy</div>
-        <p class="svc-desc">A written and visual strategy document that gives you a clear aerial view of your current operation and the best path to improve it.</p>
-        <ul class="svc-bullets">
-          <li>Diagnose your workflow end-to-end</li>
-          <li>Identify bottlenecks and friction points</li>
-          <li>Prioritized improvement plan before any system is built</li>
-        </ul>
-        <span class="svc-price">Custom</span>
-        <span class="svc-price-label">Scoped to Business Needs</span>
-      </div>
-      <div class="svc">
-        <span class="svc-num">03</span>
-        <div class="svc-name">Systems Buildout</div>
-        <p class="svc-desc">A done-for-you implementation project where I design, organize, or build the backend system identified in the strategy phase.</p>
-        <ul class="svc-bullets">
-          <li>Transaction coordination dashboard</li>
-          <li>Client tracker and document management structure</li>
-          <li>Task system and automations</li>
-          <li>SOPs tailored to your business need</li>
-        </ul>
-        <span class="svc-price">Custom</span>
-        <span class="svc-price-label">Done-For-You · Implementation</span>
-      </div>
-    </div>
-    <div class="work-cta">
-      <a href="https://tally.so/r/aQZzJB" target="_blank" class="btn btn-light">Start with a Free Business Flow Diagnostic →</a>
-      <span class="work-note">You'll be redirected to schedule your 30-min call after submitting.</span>
     </div>
   </div>
 </section>
@@ -632,8 +554,7 @@
           <div class="avail-dot"></div>
           <span class="avail-text">Available for new opportunities</span>
         </div>
-        <p class="contact-note">If you're interested in consulting or support services, please fill out the intake form so I can understand what you're working on and whether I'm a good fit.</p>
-        <a href="https://tally.so/r/aQZzJB" target="_blank" class="btn btn-primary">Fill Out Intake Form →</a>
+        <p class="contact-note">Open to full-time, contract, and remote roles in operations, project coordination, and business support. Feel free to reach out directly — I respond within one business day.</p>
       </div>
     </div>
   </div>
@@ -659,3 +580,4 @@
 </script>
 </body>
 </html>
+ 
